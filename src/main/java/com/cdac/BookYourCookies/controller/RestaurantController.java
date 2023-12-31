@@ -7,16 +7,16 @@ import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.cdac.BookYourCookies.service.RestaurantService;
 import com.cdac.BookYourCookies.dto.RegistrationStatusRestaurant;
 import com.cdac.BookYourCookies.entity.Restaurant;
 import com.cdac.BookYourCookies.exception.RestaurantServiceException;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Optional;
+
 @CrossOrigin
 @RestController
 @RequestMapping("api/v1/restaurant")
@@ -67,6 +67,13 @@ public class RestaurantController {
 			status.setMessageIfAny(e.getMessage());
 			return status;
 		}
+	}
+
+	@GetMapping("/restaurant/fetch/{id}")
+	public Restaurant fetchByRestaurantId(@PathVariable int id) {
+		logger.info("Processing request to fetch the restaurant data {}",id);
+		return restaurantService.fetch(id);
+		//how will we write try catch this time?
 	}
 
 }

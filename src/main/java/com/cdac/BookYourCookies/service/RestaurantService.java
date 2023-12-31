@@ -42,4 +42,11 @@ public class RestaurantService{
 		}
 	}
 
+	public Restaurant fetch(int restaurantId){
+		 Optional<Restaurant> restaurant =  restaurantRepository.findByRestaurantId(restaurantId);
+		//logger.info("Processing request to login the restaurant data {}",restaurant)
+		return restaurant.get();
+
+	}
+
 }

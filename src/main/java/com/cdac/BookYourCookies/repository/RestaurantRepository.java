@@ -18,4 +18,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant,Integer>{
 
 	public Optional<Restaurant> findByOwnerEmailId(String email);
 	public Optional<Restaurant> findByOwnerEmailIdAndPassword(String email, String password);
+	public Optional<Restaurant> findByRestaurantId(int id);
+
+
 }
